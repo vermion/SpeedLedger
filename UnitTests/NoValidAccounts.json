@@ -1,0 +1,4 @@
+[
+    {"id": 1, "number": "1357756", "name":"Personal account", "creditcard": false, "synthetic": true, "balance": 1202.14},
+    {"id": 2, "number": "2446987", "name":"Business account", "creditcard": false, "synthetic": false, "balance":  -1260.14}
+]

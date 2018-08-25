@@ -25,10 +25,9 @@ namespace SpeedLedger.Controllers
         [HttpGet]
         public ActionResult GetAllBankAccounts()
         {
-            string content = _hostingEnvironment.ContentRootPath + "/bankaccounts.json";
-            var accountsData = FileAccess.RetrieveAccountsData(content);
+            var accounts = GetBankAccountsData();
 
-            return Ok(accountsData);
+            return Ok(accounts);
         }
 
         /// <summary>
@@ -43,7 +42,10 @@ namespace SpeedLedger.Controllers
 
             var result = AccountCalculation.RetrieveDefaultAccount(accountsData);
 
-            return Ok(result.Id);
+            if (result != null)
+                return Ok(result.Id);
+            else
+                return BadRequest(result);
         }
 
         private List<BankAccountsModel> GetBankAccountsData()

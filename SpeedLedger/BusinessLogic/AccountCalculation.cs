@@ -25,20 +25,25 @@ namespace SpeedLedger.BusinessLogic
             if (validAccounts.Count == 1)
                 return validAccounts.First();
 
-            int? indexOfHighestBalance = null;
+            var highestAccount = validAccounts.OrderByDescending(b => b.balance).First();
+
+            bool? accountWithTwoTimesBalance = null;
             for (var i = 0; i < validAccounts.Count; i++)
             {
-                var item = validAccounts[i];
-                foreach (var j in validAccounts)
+                if (validAccounts[i].Id != highestAccount.Id)
                 {
-                    // Don't compare to self.
-                    if (item.balance * 2 > j.balance && item.Id != j.Id)
-                        indexOfHighestBalance = i;
-                }
+                    if (2 * validAccounts[i].balance <= highestAccount.balance)
+                        accountWithTwoTimesBalance = true;
+                    else
+                    {
+                        accountWithTwoTimesBalance = false;
+                        break;
+                    }
+                } 
             }
 
-            if (indexOfHighestBalance != null)
-                return validAccounts[indexOfHighestBalance.Value];
+            if (accountWithTwoTimesBalance == true)
+                return highestAccount;
 
             return null;
         }
