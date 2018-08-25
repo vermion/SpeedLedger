@@ -6,6 +6,11 @@ namespace SpeedLedger.BusinessLogic
 {
     public static class AccountCalculation
     {
+
+        /// <summary>
+        /// Returns a valid bank account according to requirement: XXXX-1234.
+        /// </summary>
+        /// <returns>BankAccountsModel</returns>
         public static BankAccountsModel RetrieveDefaultAccount(List<BankAccountsModel> bankAccounts)
         {
 

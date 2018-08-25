@@ -8,7 +8,7 @@ namespace UnitTests
     public class Class1
     {
         /// <summary>
-        /// If two valid accounts have the same balance result should be null.
+        /// If two valid accounts have the same balance, result should be null.
         /// </summary>
         [Fact]
         public void TwoValidAccountsWithSameBalance()
@@ -19,7 +19,7 @@ namespace UnitTests
         }
 
         /// <summary>
-        /// If no valid accounts result should be null.
+        /// If no valid accounts, result should be null.
         /// </summary>
         [Fact]
         public void NoValidAccounts()
@@ -30,7 +30,7 @@ namespace UnitTests
         }
 
         /// <summary>
-        /// One account has a balance with at least twice as high balance as all the other accounts.
+        /// One account (#2) has a balance with at least twice as high balance as all the other accounts.
         /// </summary>
         [Fact]
         public void OneAccountWithAtLeastTwoTimesHighestBalance()
@@ -53,7 +53,7 @@ namespace UnitTests
                 Assert.Equal(1, result.Id);
         }
 
-        private List<BankAccountsModel>  GetTestAccounts(string file)
+        private List<BankAccountsModel> GetTestAccounts(string file)
         {
             var path = AppContext.BaseDirectory.Substring(0, AppContext.BaseDirectory.IndexOf("bin"));
             string filePath = path + file;

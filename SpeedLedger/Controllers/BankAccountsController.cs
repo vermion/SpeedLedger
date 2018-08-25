@@ -31,7 +31,7 @@ namespace SpeedLedger.Controllers
         }
 
         /// <summary>
-        /// Returns a valid bank account according to requirement: XXXX-1234.
+        /// Returns the default bank account according to BusinessLogic/AccountCalculation/RetrieveDefaultAccount
         /// </summary>
         /// <returns></returns>
         [Route("default")]
