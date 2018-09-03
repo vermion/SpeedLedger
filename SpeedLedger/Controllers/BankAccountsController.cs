@@ -13,9 +13,13 @@ namespace SpeedLedger.Controllers
     {
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public BankAccountsController(IHostingEnvironment hostingEnvironment)
+        private readonly IDataAccess _dataAccess;
+
+        public BankAccountsController(IHostingEnvironment hostingEnvironment, IDataAccess dataAccess)
         {
             _hostingEnvironment = hostingEnvironment;
+
+            _dataAccess = dataAccess;
         }
 
         /// <summary>
@@ -50,9 +54,9 @@ namespace SpeedLedger.Controllers
 
         private List<BankAccountsModel> GetBankAccountsData()
         {
-            string filePath = _hostingEnvironment.ContentRootPath + "/bankaccounts.json";
+            string filePath = _hostingEnvironment.ContentRootPath + "bankaccounts.json";
 
-            return FileAccess.RetrieveAccountsData(filePath);
+            return _dataAccess.RetrieveAccountsData();
         }
     }
 }

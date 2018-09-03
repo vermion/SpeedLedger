@@ -13,7 +13,7 @@ namespace UnitTests
         [Fact]
         public void TwoValidAccountsWithSameBalance()
         {
-            var accounts = GetTestAccounts(@"\TwoValidAccountsWithSameBalance.json");
+            var accounts = GetTestAccounts(@"TwoValidAccountsWithSameBalance.json");
             var result = SpeedLedger.BusinessLogic.AccountCalculation.RetrieveDefaultAccount(accounts);
             Assert.Null(result);
         }
@@ -24,7 +24,7 @@ namespace UnitTests
         [Fact]
         public void NoValidAccounts()
         {
-            var accounts = GetTestAccounts(@"\NoValidAccounts.json");
+            var accounts = GetTestAccounts(@"NoValidAccounts.json");
             var result = SpeedLedger.BusinessLogic.AccountCalculation.RetrieveDefaultAccount(accounts);
             Assert.Null(result);
         }
@@ -35,7 +35,7 @@ namespace UnitTests
         [Fact]
         public void OneAccountWithAtLeastTwoTimesHighestBalance()
         {
-            var accounts = GetTestAccounts(@"\OneAccountWithAtLeastTwoTimesHighestBalance.json");
+            var accounts = GetTestAccounts(@"OneAccountWithAtLeastTwoTimesHighestBalance.json");
             var result = SpeedLedger.BusinessLogic.AccountCalculation.RetrieveDefaultAccount(accounts);
             if (result != null)
                 Assert.Equal(2, result.Id);
@@ -47,7 +47,7 @@ namespace UnitTests
         [Fact]
         public void OneValidAccount()
         {
-            var accounts = GetTestAccounts(@"\OneValidAccount.json");
+            var accounts = GetTestAccounts(@"OneValidAccount.json");
             var result = SpeedLedger.BusinessLogic.AccountCalculation.RetrieveDefaultAccount(accounts);
             if (result != null)
                 Assert.Equal(1, result.Id);

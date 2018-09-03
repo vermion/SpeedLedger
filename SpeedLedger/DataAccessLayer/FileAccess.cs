@@ -1,15 +1,27 @@
 ﻿using Newtonsoft.Json;
 using SpeedLedger.Model;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace SpeedLedger.DataAccessLayer
 {
     // Todo: Make this polymorphic. Perhaps with a common interface so it will easy to switch to another data source.
-    public static class FileAccess
+    public class FileAccess : IDataAccess
     {
-        public static List<BankAccountsModel> RetrieveAccountsData(string fileName)
+
+        private string filePath { get; set; }
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public FileAccess(IHostingEnvironment hostingEnvironment)
         {
-            var json = System.IO.File.ReadAllText(fileName);
+            _hostingEnvironment = hostingEnvironment;
+            filePath = _hostingEnvironment.ContentRootPath + @"/bankaccounts.json";
+        }
+        
+        public List<BankAccountsModel> RetrieveAccountsData()
+        {
+            var json = System.IO.File.ReadAllText(filePath);
 
             var bankAccounts = JsonConvert.DeserializeObject<List<BankAccountsModel>>(json);
 

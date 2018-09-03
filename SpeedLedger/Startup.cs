@@ -10,22 +10,28 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SpeedLedger.DataAccessLayer;
 
 namespace SpeedLedger
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
+            _hostingEnvironment = hostingEnvironment;
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<IDataAccess,FileAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
